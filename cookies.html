@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cookies</title>
+</head>
+<body>
+	
+	<script>
+
+		console.log("\n =========================================")
+		console.log("    Cookies ")
+		console.log(" =========================================\n")
+		function createCookie(key, value) {
+			var cookie = escape(key) + "=" + escape(value) + ";"
+			document.cookie = cookie;
+			console.log(cookie)
+			console.log("Creating new cookie with key: "+ key + " value: " + value);
+		}
+		createCookie("sport", "bascketball")
+		createCookie("icecream", "vanilla")
+
+		// Cookie with expiration date
+		console.log("\n =========================================")
+		console.log("    Cookies Expires Date ")
+		console.log(" =========================================\n")
+		function createCookie(key, value, date) {
+			var cookie = escape(key) + "=" + escape(value) + "=" + escape(date) + ";"
+			document.cookie = cookie;
+			console.log(cookie)
+			console.log("Creating new cookie with key: "+ key + " value: " + value + " Expires " + date );
+		}
+
+		// Reading Cookie 
+		console.log("\n =========================================")
+		console.log("    Reading Cookies  ")
+		console.log(" =========================================\n")
+		
+		function readingCookie(name) {
+			var key = name + "=";
+			var cookies = document.cookie.split(";")
+			for( var i = 0 ; i < cookies.length; i++){
+				var cookie= cookies[i]
+				while(cookie.charAt(0) == ' '){
+					cookie = cookie.substring(1, cookie.length)
+				}
+				if (cookie.indexOf(key) === 0 ){
+					return cookie.substring(key.length, cookie.length)
+				}
+			}
+			return null;
+		}
+
+		createCookie("sport", "bascketball", Date.UTC(2018, 8, 12, 3))
+		createCookie("icecream", "vanilla", Date.UTC(2018, 8, 12, 3))
+
+		console.log(readingCookie("icecream"))
+		console.log(readingCookie("sport"))
+
+		function deleteCookie(name) {
+			createCookie(name, "", -1);
+		}
+	</script>
+</body>
+</html>
